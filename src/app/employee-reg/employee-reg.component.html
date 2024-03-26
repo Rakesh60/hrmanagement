@@ -1,0 +1,263 @@
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+  <strong>Alert Heading</strong> Alert Content
+</div>
+
+<script>
+  var alertList = document.querySelectorAll(".alert");
+  alertList.forEach(function (alert) {
+    new bootstrap.Alert(alert);
+  });
+</script>
+<div class="card">
+  <div class="card-header">
+    <h6 class="text-center">Employee Registeration Form</h6>
+    <div class="card-body">
+      <form [formGroup]="employeeForm">
+        <div class="row">
+          <div class="form-group col">
+            <label for="">Department</label>
+            <select
+              name="department"
+              id=""
+              class="form-control"
+              formControlName="department"
+              [class.is-invalid]="
+                employeeForm.get('department')?.invalid &&
+                (employeeForm.get('department')?.dirty ||
+                  employeeForm.get('department')?.touched)
+              "
+            >
+              <option value="" disabled>---Select---</option>
+              <option value="Accounts">Accounts</option>
+              <option value="Manager">Manager</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
+
+          <div
+            *ngIf="
+              employeeForm?.get('department')?.invalid &&
+              (employeeForm?.get('department')?.dirty ||
+                employeeForm?.get('department')?.touched)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="employeeForm?.get('department')?.errors?.['required']"
+              >Department is required.</small
+            >
+          </div>
+
+          <div
+            class="form-group col"
+            [class.has-error]="
+              employeeForm.get('empName')?.invalid &&
+              (employeeForm.get('empName')?.dirty ||
+                employeeForm.get('empName')?.touched)
+            "
+          >
+            <label for="">Employee Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="empName"
+              formControlName="empName"
+              [class.is-invalid]="
+                employeeForm.get('empName')?.invalid &&
+                (employeeForm.get('empName')?.dirty ||
+                  employeeForm.get('empName')?.touched)
+              "
+            />
+            <div
+              *ngIf="
+                employeeForm?.get('empName')?.invalid &&
+                (employeeForm?.get('empName')?.dirty ||
+                  employeeForm?.get('empName')?.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="employeeForm?.get('empName')?.errors?.['required']"
+              >
+                Emp Name is required.
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label for="">mobile number</label>
+            <input
+              type="text"
+              class="form-control"
+              name="mobile"
+              formControlName="mobile"
+              [class.is-invalid]="
+                employeeForm.get('mobile')?.invalid &&
+                (employeeForm.get('mobile')?.dirty ||
+                  employeeForm.get('mobile')?.touched)
+              "
+            />
+            <div
+              *ngIf="
+                employeeForm?.get('mobile')?.invalid &&
+                (employeeForm?.get('mobile')?.dirty ||
+                  employeeForm?.get('mobile')?.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="employeeForm?.get('mobile')?.errors?.['required']"
+              >
+                Number is required.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col">
+            <label for="">Gender</label>
+            <select
+              id=""
+              class="form-control"
+              name="gender"
+              formControlName="gender"
+            >
+              <option value="" disabled>---Select---</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <div class="form-group col">
+            <label for="">Date of Join</label>
+            <input
+              type="date"
+              class="form-control"
+              name="joindate"
+              formControlName="joindate"
+            />
+          </div>
+
+          <div class="form-group col">
+            <label for="">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              formControlName="email"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="form-group col">
+            <label for="">Salary</label>
+            <input
+              type="text"
+              class="form-control"
+              name="salary"
+              formControlName="salary"
+            />
+          </div>
+
+          <div class="form-group col">
+            <label for="">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              formControlName="password"
+            />
+          </div>
+
+          <div class="form-group col">
+            <label for="">Confirm-Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="confirmpass"
+              formControlName="confirmpass"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="form-group col">
+            <input
+              type="checkbox"
+              id=""
+              class="form-check-input"
+              name="empStatus"
+              formControlName="empStatus"
+            />
+            <label for="">Active</label>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="form-group text-center">
+            <button class="btn btn-success me-2" (click)="saveEmp()">
+              Save
+            </button>
+            <button class="btn btn-warning me-2">Reset</button>
+            <button class="btn btn-danger me-2">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-2">
+  <div class="card-header text-center">
+    <h6>Employee List</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">Department</th>
+              <th scope="col">Employee Name</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Joining Date</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="">
+              <td scope="row">Accounts</td>
+              <td>Rakesah kumar</td>
+              <td>male</td>
+              <td>987654321</td>
+              <td>20.1.2024</td>
+              <td>rakesh_at_gmail.com</td>
+              <td class="text-center">
+                <button class="me-2 btn btn-primary">
+                  <i class="fa-solid fa-pen-to-square"></i> Edit
+                </button>
+                <button class="me-2 btn btn-info text-light">
+                  <i class="fa-solid fa-circle-info"></i> Detail
+                </button>
+                <button class="me-2 btn btn-danger">
+                  <i class="fa-solid fa-trash"></i> Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="conatiner"></div>

@@ -5,18 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeRegComponent } from './employee-reg/employee-reg.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { AdminModule } from './admin/admin.module';
+import { AdminserviceService } from './admin/adminservice.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeRegComponent
+    EmployeeRegComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    AdminModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AdminserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

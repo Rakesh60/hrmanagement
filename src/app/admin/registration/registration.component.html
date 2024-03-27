@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center">Registration</h1>
+  
+        <form [formGroup]="userForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+            <div
+              *ngIf="
+                userForm?.get('name')?.invalid &&
+                (userForm?.get('name')?.dirty || userForm?.get('name')?.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="userForm?.get('name')?.errors?.['required']"
+                >Name is required.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+            />
+            <div
+              *ngIf="
+                userForm?.get('email')?.invalid &&
+                (userForm?.get('email')?.dirty || userForm?.get('email')?.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="userForm?.get('email')?.errors?.['required']"
+                >Email is required.</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="userForm?.get('email')?.errors?.['email']"
+                >Invalid email format.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+            />
+            <div
+              *ngIf="
+                userForm?.get('password')?.invalid &&
+                (userForm?.get('password')?.dirty ||
+                  userForm?.get('password')?.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="userForm?.get('password')?.errors?.['required']"
+                >Password is required.</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="userForm?.get('password')?.errors?.['minlength']"
+                >Password must be at least 6 characters long.</small
+              >
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <button
+                type="button"
+                [disabled]="userForm.invalid"
+                class="btn btn-success btn-block p-2 mt-2"
+                (click)="onSaveUser()"
+              >
+                Save User
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

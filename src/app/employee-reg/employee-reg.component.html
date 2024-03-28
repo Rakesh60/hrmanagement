@@ -1,11 +1,12 @@
-<div class="alert alert-primary alert-dismissible fade show" role="alert">
+<div *ngIf="alert_msg" class="alert alert-success alert-dismissible fade show" role="alert">
   <button
+  
     type="button"
     class="btn-close"
     data-bs-dismiss="alert"
     aria-label="Close"
   ></button>
-  <strong>Alert Heading</strong> Alert Content
+  <strong>Employee Registered </strong> Successfully
 </div>
 
 <script>
@@ -24,7 +25,7 @@
             <label for="">Department</label>
             <select
               name="department"
-              id=""
+              
               class="form-control"
               formControlName="department"
               [class.is-invalid]="
@@ -57,33 +58,33 @@
           <div
             class="form-group col"
             [class.has-error]="
-              employeeForm.get('empName')?.invalid &&
-              (employeeForm.get('empName')?.dirty ||
-                employeeForm.get('empName')?.touched)
+              employeeForm.get('empname')?.invalid &&
+              (employeeForm.get('empname')?.dirty ||
+                employeeForm.get('empname')?.touched)
             "
           >
             <label for="">Employee Name</label>
             <input
               type="text"
               class="form-control"
-              name="empName"
-              formControlName="empName"
+              name="empname"
+              formControlName="empname"
               [class.is-invalid]="
-                employeeForm.get('empName')?.invalid &&
-                (employeeForm.get('empName')?.dirty ||
-                  employeeForm.get('empName')?.touched)
+                employeeForm.get('empname')?.invalid &&
+                (employeeForm.get('empname')?.dirty ||
+                  employeeForm.get('empname')?.touched)
               "
             />
             <div
               *ngIf="
-                employeeForm?.get('empName')?.invalid &&
-                (employeeForm?.get('empName')?.dirty ||
-                  employeeForm?.get('empName')?.touched)
+                employeeForm?.get('empname')?.invalid &&
+                (employeeForm?.get('empname')?.dirty ||
+                  employeeForm?.get('empname')?.touched)
               "
             >
               <small
                 class="text-danger"
-                *ngIf="employeeForm?.get('empName')?.errors?.['required']"
+                *ngIf="employeeForm?.get('empname')?.errors?.['required']"
               >
                 Emp Name is required.
               </small>
@@ -124,7 +125,7 @@
           <div class="form-group col">
             <label for="">Gender</label>
             <select
-              id=""
+             
               class="form-control"
               name="gender"
               formControlName="gender"

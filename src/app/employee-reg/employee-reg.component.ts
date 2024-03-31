@@ -9,15 +9,14 @@ import { OnInit } from '@angular/core';
   templateUrl: './employee-reg.component.html',
   styleUrl: './employee-reg.component.css'
 })
-export class EmployeeRegComponent implements OnInit{
-  
-  allEmpData:any;
-  alert_msg:Boolean=false;
+export class EmployeeRegComponent implements OnInit {
+  allEmpData: any;
+  alert_msg: Boolean = false;
   employeeForm: FormGroup = new FormGroup({
     id: new FormControl(''),
     department: new FormControl('', Validators.required),
     empname: new FormControl('', Validators.required),
-    mobile: new FormControl('',Validators.required),
+    mobile: new FormControl('', Validators.required),
     gender: new FormControl(''),
     joindate: new FormControl(''),
     email: new FormControl(''),
@@ -27,10 +26,13 @@ export class EmployeeRegComponent implements OnInit{
     empStatus: new FormControl(''),
   });
 
-  constructor(private signupservice:EmployeeserviceService , private router: Router) { }
+  constructor(private signupservice: EmployeeserviceService, private router: Router) { }
   ngOnInit(): void {
-    this.allEmpData=this.signupservice.getallemployees;
-    console.log(this.allEmpData)
+    this.signupservice.getallemployees().subscribe((response: any) => {
+      this.allEmpData = response;
+      console.log(this.allEmpData)
+
+    });
   }
   saveEmp(): void {
     console.log(this.employeeForm);
@@ -43,7 +45,7 @@ export class EmployeeRegComponent implements OnInit{
           // Optionally, reset the form
           if (response.success) {
             this.employeeForm.reset();
-            this.alert_msg=true;
+            this.alert_msg = true;
             //this.router.navigate(['/dashboard'])
           }
         },
@@ -53,5 +55,5 @@ export class EmployeeRegComponent implements OnInit{
         }
       );
   }
-  
+
 }

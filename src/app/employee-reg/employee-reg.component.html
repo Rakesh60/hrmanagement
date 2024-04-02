@@ -1,6 +1,9 @@
-<div *ngIf="alert_msg" class="alert alert-success alert-dismissible fade show" role="alert">
+<div
+  *ngIf="alert_msg"
+  class="alert alert-success alert-dismissible fade show"
+  role="alert"
+>
   <button
-  
     type="button"
     class="btn-close"
     data-bs-dismiss="alert"
@@ -25,7 +28,6 @@
             <label for="">Department</label>
             <select
               name="department"
-              
               class="form-control"
               formControlName="department"
               [class.is-invalid]="
@@ -124,12 +126,7 @@
         <div class="row">
           <div class="form-group col">
             <label for="">Gender</label>
-            <select
-             
-              class="form-control"
-              name="gender"
-              formControlName="gender"
-            >
+            <select class="form-control" name="gender" formControlName="gender">
               <option value="" disabled>---Select---</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -236,15 +233,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="">
-              <td scope="row">Accounts</td>
-              <td>Rakesah kumar</td>
-              <td>male</td>
-              <td>987654321</td>
-              <td>20.1.2024</td>
-              <td>rakesh_at_gmail.com</td>
+            <tr class="" *ngFor="let edata of allEmpData">
+              <td scope="row">{{ edata.department }}</td>
+              <td>{{ edata.empname }}</td>
+              <td>{{ edata.gender }}</td>
+              <td>{{ edata.mobile }}</td>
+              <td>{{ edata.joindate | date }}</td>
+              <td>{{ edata.email }}</td>
               <td class="text-center">
-                <button class="me-2 btn btn-primary">
+                <button class="me-2 btn btn-primary" id="{{ edata._id }}">
                   <i class="fa-solid fa-pen-to-square"></i> Edit
                 </button>
                 <button class="me-2 btn btn-info text-light">

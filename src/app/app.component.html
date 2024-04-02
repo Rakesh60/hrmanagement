@@ -1,3 +1,5 @@
 <app-navbar></app-navbar>
 <!-- <app-employee-reg></app-employee-reg> -->
-<router-outlet></router-outlet>
+<router-outlet>
+    <app-home *ngIf="router.url == '/'"></app-home>
+</router-outlet>

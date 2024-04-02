@@ -11,13 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { ContactusComponent } from './contactus/contactus.component';
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeRegComponent,
     NavbarComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule,
